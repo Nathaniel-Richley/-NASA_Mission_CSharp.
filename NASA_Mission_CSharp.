@@ -1,0 +1,41 @@
+using System;
+
+internal class Program
+{
+    static double CalculateFuel(double weight, double distanceToMoon)
+    {
+        const double fuelPerKgPerKm = 0.05;
+        double fuelNeeded = weight * distanceToMoon * fuelPerKgPerKm;
+        return fuelNeeded;
+    }
+
+    static string CheckMissionStatus(double fuelLevel, bool crewReady)
+    {
+        const double minFuelRequired = 100000;
+
+        if (fuelLevel < minFuelRequired)
+        {
+            return "Warning: Fuel level is too low!";
+        }
+
+        if (!crewReady)
+        {
+            return "Warning: Crew is not ready!";
+        }
+
+        return "Success: Mission is ready for launch!";
+    }
+
+    static void Main(string[] args)
+    {
+        double spacecraftWeight = 15000;
+        double distanceToMoon = 384400;
+        bool crewReady = true;
+
+        double fuelRequired = CalculateFuel(spacecraftWeight, distanceToMoon);
+        string status = CheckMissionStatus(fuelRequired, crewReady);
+
+        Console.WriteLine($"Fuel required for the lunar mission: {fuelRequired} kg");
+        Console.WriteLine(status);
+    }
+}
